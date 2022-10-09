@@ -28,3 +28,5 @@ size_flags_vertical = 5
 custom_fonts/font = SubResource( 1 )
 text = "Trap a monster with the quicksand in the Sandy Plains"
 autowrap = true
+
+[connection signal="gui_input" from="." to="." method="_on_Tile_gui_input"]

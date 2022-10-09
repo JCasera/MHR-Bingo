@@ -41,6 +41,7 @@ text = "Generate Grid"
 margin_left = 321.0
 margin_right = 1024.0
 margin_bottom = 600.0
+mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 5

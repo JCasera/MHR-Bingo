@@ -1,0 +1,42 @@
+{
+    "target": [
+        "Capture [non_elder_monster]",
+        "Hunt [monster]",
+        "Hunt Afflicted [non_elder_monster]",
+        "Hunt 2 [species]s",
+        "Hunt 3 [species]s",
+        "Hunt 4 [species]s",
+    ],
+    "quest": [
+        "Complete [quest]",
+        "Complete [quest] in less than 7 minutes",
+        "Complete [quest] in less than 10 minutes",
+        "Complete [quest] in less than 15 minutes",
+        "Complete [quest] with no faints"
+    ],
+    "gathering": [
+        "Complete 3 sub-quests in a single hunt",
+        "Complete 5 sub-quests in a single hunt",
+        "Complete 10 sub-quests",
+        "Max out your petalace",
+        "Collect 3000 Resource Points in a single hunt",
+        "Collect 5000 Resource Points in a single hunt"
+    ],
+    "exploring": [
+        "Take a picture of [monster]",
+        "Take a picture of [endemic_life]",
+        "Trap a monster with the quicksand in the Sandy Plains",
+        "Break the tower in the citidel",
+        "Take a picture of [rare_endemic_life]"
+    ],
+    "battle": [],
+    "restrictions": [
+        "Complete a hunt without eating a meal",
+        "Complete a hunt without using items",
+        "Complete a hunt without healing",
+        "Complete a hunt without armor",
+        "Complete a hunt without using endemic life",
+        "Complete a hunt solo",
+        "Complete a hunt without palicos/palimutes"
+    ]
+}

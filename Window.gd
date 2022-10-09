@@ -18,7 +18,7 @@ const life_placeholder = "[endemic_life]"
 func _ready():
 	rng.randomize()
 	load_monsters()
-	load_missions()	
+	load_missions()
 
 func load_missions():
 	var f = File.new()
@@ -46,42 +46,59 @@ func roll_missions():
 	var exploring_count = rng.randi_range(1,2)
 	var battle_count = rng.randi_range(1,2)
 	var quest_count = rng.randi_range(4,6)
-	
+
 	board_missions.append_array(get_missions_for_type("restrictions", restriction_count))
 	board_missions.append_array(get_missions_for_type("gathering", gathering_count))
 	board_missions.append_array(get_missions_for_type("exploring", exploring_count))
 #	board_missions.append_array(get_missions_for_type("battle", battle_count))
 #	board_missions.append_array(get_missions_for_type("quest", quest_count))
 	board_missions.append_array(get_missions_for_type("target", board_size - board_missions.size()))
-	
+
 	return board_missions
 
 func get_missions_for_type(type, count):
 	var board_missions = []
 	for i in count:
 		var m = get_mission(type, rng.randi_range(0, get_mission_count_by_type(type)-1))
-		m = finalize_mission(m)
+		if type == "target":
+			var lvl = rng.randi_range(1,3)
+			m = finalize_target_mission(m, lvl)
+		else:
+			m = finalize_mission(m)
 		board_missions.append(m)
 	return board_missions
+
+func finalize_target_mission(m, lvl):
+	var placeholder = ""
+	var list = monster_list["lv_"+str(lvl)]
+	var monster = ""
+	if m.find(monster_placeholder) > 0:
+		placeholder = monster_placeholder
+		if lvl > 2:
+			list.append_array(monster_list["elders"])
+		monster = fill_in_placeholder(list)
+	elif m.find(non_elder_monster_placeholder) > 0:
+		placeholder = non_elder_monster_placeholder
+		monster = fill_in_placeholder(list)
+	elif m.find(species_placeholder) > 0:
+		placeholder = species_placeholder
+		monster = fill_in_placeholder(monster_list[species_placeholder])
 	
+	used_values.append(monster)
+	return m.replace(placeholder, monster)
+
 func finalize_mission(m):
 	var placeholder = ""
 	if m.find(rare_life_placeholder) > 0:
 		placeholder = rare_life_placeholder
 	elif m.find(life_placeholder) > 0:
 		placeholder = life_placeholder
-	elif m.find(monster_placeholder) > 0:
-		placeholder = monster_placeholder
-	elif m.find(non_elder_monster_placeholder) > 0:
-		placeholder = non_elder_monster_placeholder
-	elif m.find(species_placeholder) > 0:
-		placeholder = species_placeholder
 	elif m.find(quest_placeholder) > 0:
 		placeholder = quest_placeholder
 	else:
 		print("No placeholder for " + m)
 		return m
-	
+
 	var fill = fill_in_placeholder(monster_list[placeholder])
 	used_values.append(fill)
 	return m.replace(placeholder, fill)
@@ -95,7 +112,7 @@ func fill_in_placeholder(list):
 
 func get_mission_count_by_type(mission_type):
 	return mission_list[mission_type].size()
-	
+
 func get_mission(type, pos):
 	return mission_list[type][pos]
 
@@ -103,14 +120,15 @@ func get_mission(type, pos):
 func _on_Button_pressed():
 	for i in board.get_children():
 		board.remove_child(i)
-		
+
 	var missions = roll_missions()
-	
+	print(missions)
+
 	for i in board_size:
 		var select = rng.randi_range(0,missions.size()-1)
 		var mission_text = missions[select]
 		missions.remove(select)
-		
+
 		var l = Label.new()
 		l.text = mission_text
 		l.autowrap = true

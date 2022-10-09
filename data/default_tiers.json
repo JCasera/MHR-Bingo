@@ -1,0 +1,18 @@
+[
+    {
+        "mission_difficulty_chance": [ 70, 20, 10 ],
+        "mission_type_chance": []
+    },
+    {
+        "mission_difficulty_chance": [30, 40, 30],
+        "mission_type_chance": []
+    },
+    {
+        "mission_difficulty_chance": [15, 50, 35],
+        "mission_type_chance": []
+    },
+    {
+        "mission_difficulty_chance": [10, 40, 50],
+        "mission_type_chance": []
+    }
+]

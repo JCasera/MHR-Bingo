@@ -2,7 +2,8 @@
     "target": [
         "Capture [non_elder_monster]",
         "Hunt [monster]",
-        "Hunt Afflicted [non_elder_monster]",
+        "Hunt [elders]",
+        "Hunt Afflicted [afflicted]",
         "Hunt 2 [species]s",
         "Hunt 3 [species]s",
         "Hunt 4 [species]s"

@@ -1,14 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Window.gd" type="Script" id=1]
-[ext_resource path="res://FiraMono-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/timer_text.tres" type="DynamicFont" id=2]
 [ext_resource path="res://TimerContainer.gd" type="Script" id=3]
-
-[sub_resource type="DynamicFont" id=1]
-size = 26
-outline_size = 2
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 2 )
 
 [node name="Window" type="VBoxContainer"]
 anchor_right = 1.0
@@ -19,51 +13,56 @@ __meta__ = {
 }
 
 [node name="Options" type="HBoxContainer" parent="."]
-margin_right = 1024.0
-margin_bottom = 32.0
+margin_right = 1180.0
+margin_bottom = 38.0
 
 [node name="HowTo" type="Button" parent="Options"]
-margin_right = 55.0
-margin_bottom = 32.0
-text = "HowTo"
+margin_right = 108.0
+margin_bottom = 38.0
+custom_fonts/font = ExtResource( 2 )
+text = "How To"
 
 [node name="Generate" type="Button" parent="Options"]
-margin_left = 59.0
-margin_right = 161.0
-margin_bottom = 32.0
+margin_left = 112.0
+margin_right = 332.0
+margin_bottom = 38.0
+custom_fonts/font = ExtResource( 2 )
 text = "Generate Grid"
 
 [node name="TimerContainer" type="HBoxContainer" parent="Options"]
-margin_left = 757.0
-margin_right = 1024.0
-margin_bottom = 32.0
+margin_left = 748.0
+margin_right = 1180.0
+margin_bottom = 38.0
 size_flags_horizontal = 10
 script = ExtResource( 3 )
 
 [node name="Start" type="Button" parent="Options/TimerContainer"]
-margin_right = 81.0
-margin_bottom = 32.0
+margin_right = 188.0
+margin_bottom = 38.0
+custom_fonts/font = ExtResource( 2 )
 text = "Start Bingo"
 
 [node name="Retire" type="Button" parent="Options/TimerContainer"]
-margin_left = 85.0
-margin_right = 135.0
-margin_bottom = 32.0
+margin_left = 192.0
+margin_right = 300.0
+margin_bottom = 38.0
 size_flags_horizontal = 8
+custom_fonts/font = ExtResource( 2 )
 text = "Retire"
 
 [node name="Timer" type="Label" parent="Options/TimerContainer"]
-margin_left = 139.0
-margin_right = 267.0
-margin_bottom = 32.0
+margin_left = 304.0
+margin_top = 3.0
+margin_right = 432.0
+margin_bottom = 35.0
 size_flags_horizontal = 8
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 2 )
 text = "00:00:00"
 
 [node name="Board" type="GridContainer" parent="."]
-margin_top = 36.0
-margin_right = 1024.0
-margin_bottom = 600.0
+margin_top = 42.0
+margin_right = 1180.0
+margin_bottom = 1080.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

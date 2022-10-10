@@ -12,7 +12,14 @@ config_version=4
 
 config/name="MHR BingoBoard"
 run/main_scene="res://Window.tscn"
-config/icon="res://icon.png"
+config/icon="res://Assets/icon.png"
+
+[display]
+
+window/size/width=1180
+window/size/height=1080
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [physics]
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://FiraMono-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/FiraMono-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Tile.gd" type="Script" id=2]
+[ext_resource path="res://Assets/effects_bg.png" type="Texture" id=3]
 
 [sub_resource type="DynamicFont" id=1]
-size = 20
+size = 24
 font_data = ExtResource( 1 )
 
 [node name="Tile" type="CenterContainer"]
@@ -17,11 +18,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Background" type="TextureRect" parent="."]
+margin_left = 475.0
+margin_top = 440.0
+margin_right = 705.0
+margin_bottom = 640.0
+rect_min_size = Vector2( 230, 200 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 1
+
 [node name="Label" type="Label" parent="."]
-margin_left = 412.0
-margin_top = 245.0
-margin_right = 612.0
-margin_bottom = 354.0
+margin_left = 490.0
+margin_top = 459.0
+margin_right = 690.0
+margin_bottom = 621.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 5

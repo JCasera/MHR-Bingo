@@ -1,8 +1,16 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Window.gd" type="Script" id=1]
+[ext_resource path="res://FiraMono-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://TimerContainer.gd" type="Script" id=3]
 
-[node name="Window" type="HBoxContainer"]
+[sub_resource type="DynamicFont" id=1]
+size = 26
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[node name="Window" type="VBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
@@ -10,35 +18,50 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Options" type="VBoxContainer" parent="."]
-margin_right = 317.0
-margin_bottom = 600.0
+[node name="Options" type="HBoxContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 32.0
 
-[node name="Hide" type="Button" parent="Options"]
-margin_right = 317.0
-margin_bottom = 20.0
-text = "Hide"
-
-[node name="Label" type="Label" parent="Options"]
-margin_top = 24.0
-margin_right = 317.0
-margin_bottom = 140.0
-text = "Rules:
-Get a line of 5 to finish.
-You must play at the highest available rank
-for each bingo mission.
-Anomoly investigations are optional (house rules)
-
-"
+[node name="HowTo" type="Button" parent="Options"]
+margin_right = 55.0
+margin_bottom = 32.0
+text = "HowTo"
 
 [node name="Generate" type="Button" parent="Options"]
-margin_top = 144.0
-margin_right = 317.0
-margin_bottom = 164.0
+margin_left = 59.0
+margin_right = 161.0
+margin_bottom = 32.0
 text = "Generate Grid"
 
+[node name="TimerContainer" type="HBoxContainer" parent="Options"]
+margin_left = 757.0
+margin_right = 1024.0
+margin_bottom = 32.0
+size_flags_horizontal = 10
+script = ExtResource( 3 )
+
+[node name="Start" type="Button" parent="Options/TimerContainer"]
+margin_right = 81.0
+margin_bottom = 32.0
+text = "Start Bingo"
+
+[node name="Retire" type="Button" parent="Options/TimerContainer"]
+margin_left = 85.0
+margin_right = 135.0
+margin_bottom = 32.0
+size_flags_horizontal = 8
+text = "Retire"
+
+[node name="Timer" type="Label" parent="Options/TimerContainer"]
+margin_left = 139.0
+margin_right = 267.0
+margin_bottom = 32.0
+size_flags_horizontal = 8
+custom_fonts/font = SubResource( 1 )
+text = "00:00:00"
+
 [node name="Board" type="GridContainer" parent="."]
-margin_left = 321.0
+margin_top = 36.0
 margin_right = 1024.0
 margin_bottom = 600.0
 mouse_filter = 2
@@ -46,5 +69,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 5
 
-[connection signal="pressed" from="Options/Hide" to="." method="_on_Hide_pressed"]
-[connection signal="pressed" from="Options/Generate" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Options/HowTo" to="." method="_on_HowTo_pressed"]
+[connection signal="pressed" from="Options/Generate" to="." method="_on_Generate_pressed"]
+[connection signal="pressed" from="Options/TimerContainer/Start" to="Options/TimerContainer" method="_on_Start_pressed"]
+[connection signal="pressed" from="Options/TimerContainer/Retire" to="Options/TimerContainer" method="_on_Retire_pressed"]

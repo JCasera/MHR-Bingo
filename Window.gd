@@ -1,4 +1,4 @@
-extends HBoxContainer
+extends VBoxContainer
 
 onready var board = $Board
 onready var options = $Options
@@ -97,9 +97,12 @@ func get_mission_count_by_type(mission_type):
 
 func get_mission(type, pos):
 	return mission_list[type][pos]
+	
 
+func _on_HowTo_pressed():
+	pass # Replace with function body.
 
-func _on_Button_pressed():
+func _on_Generate_pressed():
 	for i in board.get_children():
 		board.remove_child(i)
 
@@ -117,6 +120,3 @@ func _on_Button_pressed():
 		board.add_child(l)
 		l.update_text(mission_text)
 
-
-func _on_Hide_pressed():
-	options.hide()

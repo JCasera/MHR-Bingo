@@ -72,32 +72,32 @@ func get_missions_for_type(type, count):
 			var placeholder = regex.search(m)
 			if placeholder != null:
 				m = replace_placeholder(m, placeholder.get_string())
-		
+
 		board_missions.append(m)
 	return board_missions
 
 func replace_placeholder(text, tag):
 	var new_text = text
-	
+
 	var list = []
 	for i in fill_in_values[tag]:
 		if not used_values.has(i):
 			list.append(i)
-	
+
 	if list.size() == 0:
 		return null
-	
+
 	var replacement = list[rng.randi_range(0, list.size()-1)]
 	new_text = regex.sub(new_text, replacement)
 	used_values.append(replacement)
 	return new_text
-	
+
 func get_mission_count_by_type(mission_type):
 	return mission_list[mission_type].size()
 
 func get_mission(type, pos):
 	return mission_list[type][pos]
-	
+
 
 func _on_HowTo_pressed():
 	pass # Replace with function body.

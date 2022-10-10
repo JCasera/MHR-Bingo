@@ -30,3 +30,5 @@ text = "Trap a monster with the quicksand in the Sandy Plains"
 autowrap = true
 
 [connection signal="gui_input" from="." to="." method="_on_Tile_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_Tile_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_Tile_mouse_exited"]

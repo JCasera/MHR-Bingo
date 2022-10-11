@@ -16,18 +16,24 @@ __meta__ = {
 margin_right = 1180.0
 margin_bottom = 38.0
 
-[node name="HowTo" type="Button" parent="Options"]
-margin_right = 108.0
+[node name="Options" type="Button" parent="Options"]
+margin_right = 124.0
 margin_bottom = 38.0
 custom_fonts/font = ExtResource( 2 )
-text = "How To"
+text = "Options"
 
 [node name="Generate" type="Button" parent="Options"]
-margin_left = 112.0
-margin_right = 332.0
+margin_left = 128.0
+margin_right = 348.0
 margin_bottom = 38.0
 custom_fonts/font = ExtResource( 2 )
 text = "Generate Grid"
+
+[node name="Seed" type="LineEdit" parent="Options"]
+margin_left = 352.0
+margin_right = 744.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
 
 [node name="TimerContainer" type="HBoxContainer" parent="Options"]
 margin_left = 748.0
@@ -68,7 +74,53 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 5
 
-[connection signal="pressed" from="Options/HowTo" to="." method="_on_HowTo_pressed"]
+[node name="PopupMenu" type="PopupPanel" parent="."]
+margin_top = 563.0
+margin_right = 400.0
+margin_bottom = 963.0
+rect_min_size = Vector2( 400, 400 )
+size_flags_horizontal = 2
+size_flags_vertical = 2
+
+[node name="OptionList" type="VBoxContainer" parent="PopupMenu"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 396.0
+margin_bottom = 396.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="PopupMenu/OptionList"]
+margin_right = 392.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 2 )
+text = "Enter a shared seed:"
+
+[node name="SharedSeed" type="HBoxContainer" parent="PopupMenu/OptionList"]
+margin_top = 36.0
+margin_right = 392.0
+margin_bottom = 392.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CustomSeed" type="LineEdit" parent="PopupMenu/OptionList/SharedSeed"]
+margin_right = 317.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 2
+
+[node name="SeededGenerate" type="Button" parent="PopupMenu/OptionList/SharedSeed"]
+margin_left = 321.0
+margin_right = 392.0
+margin_bottom = 20.0
+size_flags_vertical = 2
+text = "Generate"
+
+[connection signal="pressed" from="Options/Options" to="." method="_on_Options_pressed"]
 [connection signal="pressed" from="Options/Generate" to="." method="_on_Generate_pressed"]
 [connection signal="pressed" from="Options/TimerContainer/Start" to="Options/TimerContainer" method="_on_Start_pressed"]
 [connection signal="pressed" from="Options/TimerContainer/Retire" to="Options/TimerContainer" method="_on_Retire_pressed"]
+[connection signal="pressed" from="PopupMenu/OptionList/SharedSeed/SeededGenerate" to="." method="_on_SeededGenerate_pressed"]

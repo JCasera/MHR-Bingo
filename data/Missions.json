@@ -3,7 +3,9 @@
         "Capture [non_elder_monster]",
         "Hunt [monster]",
         "Hunt [elders]",
-        "Hunt Afflicted [afflicted]",
+        "Hunt Afflicted [afflicted]"
+    ],
+    "hunts": [
         "Hunt 2 [species]s",
         "Hunt 3 [species]s",
         "Hunt 4 [species]s"

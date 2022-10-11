@@ -72,7 +72,9 @@ func get_missions_for_type(type, count):
 			var placeholder = regex.search(m)
 			if placeholder != null:
 				m = replace_placeholder(m, placeholder.get_string())
-
+			if board_missions.has(m):
+				m = null
+			
 		board_missions.append(m)
 	return board_missions
 

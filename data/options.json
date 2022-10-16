@@ -1,14 +1,15 @@
 {
-    "Generation":{
+    "mode":{
         "default": [
             [2,4,"restrictions"],
             [3,6,"gathering","exploring","battle"],
-            [4,6,"quest","arena"],
+            [4,6,"quest"],
             [-1,-1, "target", "hunts"]
         ],
-        "quest_rando":[
+        "expedition_rando":[
             [2,4,"restrictions"],
-            [9,12,"gathering","exploring","battle"],
+            [4,6, "target"],
+            [7,9,"gathering","exploring"],
             [-1,-1,"hunts"]
         ]
     }

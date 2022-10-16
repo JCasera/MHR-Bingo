@@ -305,5 +305,43 @@
         "Silver Rathalos",
         "Violet Mizutsune",
         "Zinogre"
-    ]
+    ],
+    "[rare_account_item]": [
+        "Confragralantern",
+        "Exquisite Mushroom",
+        "Exquisite Sprout",
+        "Arctic Frostcone",
+        "Great Shipshell",
+        "Ancient Coin",
+        "Emperor Cactus",
+        "Blaze Berry",
+        "Cosmo Rose",
+        "Icevoid Prism",
+        "Penta Pitcher",
+        "Transcendent Rhino",
+        "Aeonian Coal",
+        "Chalcedony Bonemass",
+        "Iridescent Bismuth Prism",
+        "Prized Mushroom",
+        "Prime Fern",
+        "Golden Snail",
+        "Iridescent Geode",
+        "Godbug Copal",
+        "Antique Tableware"
+    ],
+    "[delivery]":[
+        "Premium Wyvern Egg",
+        "Gold Gargwa Egg",
+        "Giant Frost Fossil",
+        "Premium Herbivore Egg",
+        "Giant Laffresia",
+        "Bigger Bismuth Chunk",
+        "Moon Drop"
+    ],
+    "[drops]": [
+        "Wyvern Tear",
+        "Large Wyvern Tear",
+        "Dragon Treasure"
+    ],
+    "[quest]": []
 }

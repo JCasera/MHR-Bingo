@@ -18,12 +18,16 @@
         "Complete [quest] with no faints"
     ],
     "gathering": [
-        "Complete 3 sub-quests in a single hunt",
-        "Complete 5 sub-quests in a single hunt",
+        "Complete 3 sub-quests in 1 hunt",
+        "Complete 5 sub-quests in 1 hunt",
         "Complete 10 sub-quests",
-        "Max out your petalace",
-        "Collect 3000 Resource Points in a single hunt",
-        "Collect 5000 Resource Points in a single hunt"
+        "Max out your petalace while on an expedition",
+        "Collect 3000 Resource Points in 1 hunt",
+        "Collect 5000 Resource Points in 1 hunt",
+        "Catch 5 Great Whetfish",
+        "Collect 10 [rare_account_item]",
+        "Deliver 3 [delivery]",
+        "Collect 4 [drops]"
     ],
     "exploring": [
         "Take a picture of [monster]",
@@ -40,6 +44,7 @@
         "Complete a hunt without armor",
         "Complete a hunt without using endemic life",
         "Complete a hunt solo",
-        "Complete a hunt without palicos/palimutes"
+        "Complete a hunt without palicos/palimutes",
+        "Complete a hunt without sharpening your weapon"
     ]
 }

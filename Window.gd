@@ -3,23 +3,19 @@ extends VBoxContainer
 onready var board = $Board
 onready var options = $Options
 onready var rng_seed = $Options/Seed
+onready var modes_list = $PopupMenu/OptionList/ModeList
 onready var tile = preload("res://Tile.tscn")
 
 var mission_list
 var fill_in_values
 var bingo_options
 const board_size = 25
+const values_exhausted = "Values Exhausted"
 
 var rng = RandomNumberGenerator.new()
 var used_values = []
 var regex = RegEx.new()
-
-const rare_life_placeholder = "[rare_endemic_life]"
-const quest_placeholder = "[quest]"
-const monster_placeholder = "[monster]"
-const non_elder_monster_placeholder = "[non_elder_monster]"
-const species_placeholder = "[species]"
-const life_placeholder = "[endemic_life]"
+var board_modes = ButtonGroup.new()
 
 func _ready():
 	rng.randomize()
@@ -45,36 +41,47 @@ func load_options():
 	f.open("res://data/options.json", File.READ)
 	bingo_options = parse_json(f.get_as_text())
 	f.close()
+	var boards = bingo_options["mode"]
+	for i in boards:
+		var radbtn = CheckBox.new()
+		modes_list.add_child(radbtn)
+		radbtn.name = i
+		radbtn.text = i.capitalize()
+		radbtn.group = board_modes
+	board_modes.get_buttons()[0].pressed = true
 
 func roll_missions():
-	# 2-4 restrictions
-	# 1-2 gathering
-	# 1-2 exploring
-	# 1-2 battle
-	# 4-6 quest/arena
-	# remaining should be target missions
 	used_values.clear()
+	rng_seed.text = str(rng.state)
+	return load_board_by_type()
+	
+func load_board_by_type():
+	print("Creating board for " + board_modes.get_pressed_button().name)
+	var generation_rules = bingo_options["mode"][board_modes.get_pressed_button().name]
 	var board_missions = []
 	
-	# Save rng state
-	rng_seed.text = str(rng.state)
+	for tile_type in generation_rules:
+		var tile_count = rng.randi_range(tile_type[0], tile_type[1])
+		if tile_count == -1:
+			tile_count = board_size - board_missions.size()
+		elif tile_count == -2:
+			break
+		board_missions.append_array(select_randomized_missions_for(tile_type.slice(2, tile_type.size()), tile_count))
 	
-	var restriction_count = rng.randi_range(2,4)
-	var gathering_count = rng.randi_range(1,2)
-	var exploring_count = rng.randi_range(1,2)
-	var battle_count = rng.randi_range(1,2)
-	var quest_count = rng.randi_range(4,6)
-
-	board_missions.append_array(select_randomized_missions(get_mission_list_for(["restrictions"]), restriction_count))
-	board_missions.append_array(select_randomized_missions(get_mission_list_for(["gathering"]), gathering_count))
-	board_missions.append_array(select_randomized_missions(get_mission_list_for(["exploring"]), battle_count))
-#	board_missions.append_array(get_missions_for_type("battle", battle_count))
-#	board_missions.append_array(get_missions_for_type("quest", quest_count))
-	board_missions.append_array(select_randomized_missions(get_mission_list_for(["target", "hunts"]), board_size - board_missions.size()))
-
+	# Needed as sometimes we end up with 1 less than expected
+	print("Missing " + str(board_size-board_missions.size()) + " tiles")
+	while board_missions.size() < board_size:
+		var filler_mission = select_randomized_missions_for(generation_rules[-1].slice(2,generation_rules[-1].size()), 1)
+		if board_missions.has(filler_mission):
+			continue
+		board_missions.append_array(filler_mission)
+		
 	return board_missions
 
-func select_randomized_missions(list, count):
+func select_randomized_missions_for(types, count):
+	var list = get_mission_list_for(types)
+	if list.size() == 0:
+		return []
 	var board_missions = []
 	for i in count:
 		var m = null
@@ -82,7 +89,10 @@ func select_randomized_missions(list, count):
 			m = list[rng.randi_range(0, list.size()-1)]
 			var placeholder = regex.search(m)
 			if placeholder != null:
-				m = replace_placeholder(m, placeholder.get_string())
+				var replacement = replace_placeholder(m, placeholder.get_string())
+				if replacement == values_exhausted:
+					return board_missions
+				m = replacement
 			if board_missions.has(m):
 				m = null
 
@@ -98,7 +108,7 @@ func replace_placeholder(text, tag):
 			list.append(i)
 
 	if list.size() == 0:
-		return null
+		return values_exhausted
 
 	var replacement = list[rng.randi_range(0, list.size()-1)]
 	new_text = regex.sub(new_text, replacement)
@@ -107,6 +117,10 @@ func replace_placeholder(text, tag):
 
 func get_mission_list_for(types):
 	var list = []
+	
+	if types[0] == "Any":
+		types = mission_list.keys()
+		
 	for i in types:
 		list.append_array(mission_list[i])
 	return list
@@ -122,7 +136,11 @@ func _on_Generate_pressed():
 	print("\n")
 
 	for i in board_size:
-		var select = rng.randi_range(0,missions.size()-1)
+		var select = rng.randi_range(0, max(missions.size()-1, 0))
+		if select >= missions.size():
+			rng_seed.text = "Invalid Board - Not enough tiles"
+			break
+			
 		var mission_text = missions[select]
 		missions.remove(select)
 
@@ -132,7 +150,7 @@ func _on_Generate_pressed():
 
 func _on_Options_pressed():
 	print(bingo_options.keys())
-	print(bingo_options["Generation"].keys())
+	print(bingo_options["mode"].keys())
 	$PopupMenu.popup_centered()
 
 

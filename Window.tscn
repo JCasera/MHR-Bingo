@@ -68,13 +68,14 @@ text = "00:00:00"
 [node name="Board" type="GridContainer" parent="."]
 margin_top = 42.0
 margin_right = 1180.0
-margin_bottom = 1080.0
+margin_bottom = 559.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 5
 
 [node name="PopupMenu" type="PopupPanel" parent="."]
+visible = true
 margin_top = 563.0
 margin_right = 400.0
 margin_bottom = 963.0
@@ -102,9 +103,8 @@ text = "Enter a shared seed:"
 [node name="SharedSeed" type="HBoxContainer" parent="PopupMenu/OptionList"]
 margin_top = 36.0
 margin_right = 392.0
-margin_bottom = 392.0
+margin_bottom = 60.0
 size_flags_horizontal = 3
-size_flags_vertical = 3
 
 [node name="CustomSeed" type="LineEdit" parent="PopupMenu/OptionList/SharedSeed"]
 margin_right = 317.0
@@ -118,6 +118,12 @@ margin_right = 392.0
 margin_bottom = 20.0
 size_flags_vertical = 2
 text = "Generate"
+
+[node name="ModeList" type="VBoxContainer" parent="PopupMenu/OptionList"]
+margin_top = 64.0
+margin_right = 392.0
+margin_bottom = 392.0
+size_flags_vertical = 3
 
 [connection signal="pressed" from="Options/Options" to="." method="_on_Options_pressed"]
 [connection signal="pressed" from="Options/Generate" to="." method="_on_Generate_pressed"]

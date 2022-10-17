@@ -1,14 +1,15 @@
 {
     "target": [
-        "Capture [non_elder_monster]",
-        "Hunt [monster]",
-        "Hunt [elders]",
+        "Capture [basic_monsters]",
+        "Hunt [basic_monsters]",
+        "Hunt [special_arena_monsters]",
+        "Hunt [common_elders]",
         "Hunt Afflicted [afflicted]"
     ],
     "expedition": [
-        "Capture [afflicted]",
-        "Hunt [afflicted]",
-        "Hunt [elders]"
+        "Capture [basic_monsters]",
+        "Hunt [basic_monsters]",
+        "Hunt [common_elders]"
 ],
     "hunts": [
         "Hunt 2 [species]s",

@@ -36,7 +36,9 @@
         "Collect 4 [drops]"
     ],
     "exploring": [
-        "Take a picture of [monster]",
+        "Take a picture of [basic_monsters]",
+        "Take a picture of [afflicted] during the qurio burst",
+        "Take a picture of [common_elders]",
         "Take a picture of [endemic_life]",
         "Trap a monster with the quicksand in the Sandy Plains",
         "Break the tower in the citidel",

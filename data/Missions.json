@@ -5,6 +5,11 @@
         "Hunt [elders]",
         "Hunt Afflicted [afflicted]"
     ],
+    "expedition": [
+        "Capture [afflicted]",
+        "Hunt [afflicted]",
+        "Hunt [elders]"
+],
     "hunts": [
         "Hunt 2 [species]s",
         "Hunt 3 [species]s",

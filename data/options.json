@@ -1,18 +1,15 @@
 {
     "mode":{
         "default": [
-            [2,4,"restrictions"],
-            [3,6,"gathering","exploring","battle"],
-            [4,6,"quest"],
-            [-1,-1, "target", "hunts"],
-            [-2,-2, "restrictions", "quest", "target", "gathering", "exploring", "hunts"]
+            [-1,-1, "any"],
+            [-2,-2, "any"]
         ],
         "expedition_rando":[
-            [2,4,"restrictions"],
-            [4,6, "target"],
-            [7,9,"gathering","exploring"],
+            [4,6,"restrictions"],
+            [4,6, "expedition"],
+            [6,8,"gathering","exploring"],
             [-1,-1,"hunts"],
-            [-2,-2,"restrictions", "target", "gathering", "exploring", "hunts"]
+            [-2,-2,"restrictions", "expedition", "gathering", "exploring", "hunts"]
         ]
     }
 }

@@ -54,12 +54,12 @@ func roll_missions():
 	used_values.clear()
 	rng_seed.text = str(rng.state)
 	return load_board_by_type()
-	
+
 func load_board_by_type():
 	print("Creating board for " + board_modes.get_pressed_button().name)
 	var generation_rules = bingo_options["mode"][board_modes.get_pressed_button().name]
 	var board_missions = []
-	
+
 	for tile_type in generation_rules:
 		var tile_count = rng.randi_range(tile_type[0], tile_type[1])
 		if tile_count == -1:
@@ -67,7 +67,7 @@ func load_board_by_type():
 		elif tile_count == -2:
 			break
 		board_missions.append_array(select_randomized_missions_for(tile_type.slice(2, tile_type.size()), tile_count))
-	
+
 	# Needed as sometimes we end up with 1 less than expected
 	print("Missing " + str(board_size-board_missions.size()) + " tiles")
 	while board_missions.size() < board_size:
@@ -75,7 +75,7 @@ func load_board_by_type():
 		if board_missions.has(filler_mission):
 			continue
 		board_missions.append_array(filler_mission)
-		
+
 	return board_missions
 
 func select_randomized_missions_for(types, count):
@@ -117,10 +117,10 @@ func replace_placeholder(text, tag):
 
 func get_mission_list_for(types):
 	var list = []
-	
-	if types[0] == "Any":
+
+	if types[0] == "any":
 		types = mission_list.keys()
-		
+
 	for i in types:
 		list.append_array(mission_list[i])
 	return list
@@ -140,7 +140,7 @@ func _on_Generate_pressed():
 		if select >= missions.size():
 			rng_seed.text = "Invalid Board - Not enough tiles"
 			break
-			
+
 		var mission_text = missions[select]
 		missions.remove(select)
 

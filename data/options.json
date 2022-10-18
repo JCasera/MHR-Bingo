@@ -6,8 +6,8 @@
         ],
         "expedition_rando":[
             [4,6,"restrictions"],
-            [4,6, "expedition"],
-            [6,8,"gathering","exploring"],
+            [6,8,"gathering"],
+            [6,8,"exploring"],
             [-1,-1,"hunts"],
             [-2,-2,"restrictions", "expedition", "gathering", "exploring", "hunts"]
         ]

@@ -34,8 +34,8 @@
         "Collect 10000 Resource Points in 1 hunt",
         "Catch 5 Great Whetfish",
         "Collect 10 [rare_account_item]",
-        "Deliver 3 [delivery]",
-        "Collect 10 [drops]"
+        "Deliver 2 [delivery]",
+        "Collect 3 [drops]"
     ],
     "exploring": [
         "Take a picture of monsters in a Turf War",
@@ -44,7 +44,12 @@
         "Take a picture of 3 paralyzed [species]s",
         "Take a picture of 3 blighted [species]s",
         "Trap a monster with the quicksand in the Sandy Plains",
-        "Break the tower in the citidel",
+        "Break the tower in the Citidel",
+        "Launch a monster into a water/lava vein",
+        "Visit the secret island in the Jungle",
+        "Visit the secret area in the Citidel",
+        "Climb to the top of the mountain in the Shrine Ruins",
+        "Climb to the top of the central tree in the Jungle",
         "Take a picture of [rare_endemic_life]"
     ],
     "battle": [],

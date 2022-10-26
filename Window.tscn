@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/timer_text.tres" type="DynamicFont" id=2]
 [ext_resource path="res://TimerContainer.gd" type="Script" id=3]
 
-[node name="Window" type="VBoxContainer"]
+[node name="Window" type="HBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
@@ -12,43 +12,50 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Options" type="HBoxContainer" parent="."]
-margin_right = 1180.0
+[node name="Main" type="VBoxContainer" parent="."]
+margin_right = 1176.0
+margin_bottom = 1080.0
+size_flags_horizontal = 3
+
+[node name="Options" type="HBoxContainer" parent="Main"]
+margin_right = 1176.0
 margin_bottom = 38.0
 
-[node name="Options" type="Button" parent="Options"]
+[node name="Options" type="Button" parent="Main/Options"]
 margin_right = 124.0
 margin_bottom = 38.0
 custom_fonts/font = ExtResource( 2 )
 text = "Options"
 
-[node name="Generate" type="Button" parent="Options"]
+[node name="Generate" type="Button" parent="Main/Options"]
 margin_left = 128.0
 margin_right = 348.0
 margin_bottom = 38.0
 custom_fonts/font = ExtResource( 2 )
 text = "Generate Grid"
 
-[node name="Seed" type="LineEdit" parent="Options"]
+[node name="Seed" type="LineEdit" parent="Main/Options"]
 margin_left = 352.0
-margin_right = 744.0
+margin_right = 740.0
 margin_bottom = 38.0
 size_flags_horizontal = 3
+caret_blink = true
+caret_blink_speed = 0.5
 
-[node name="TimerContainer" type="HBoxContainer" parent="Options"]
-margin_left = 748.0
-margin_right = 1180.0
+[node name="TimerContainer" type="HBoxContainer" parent="Main/Options"]
+margin_left = 744.0
+margin_right = 1176.0
 margin_bottom = 38.0
 size_flags_horizontal = 10
 script = ExtResource( 3 )
 
-[node name="Start" type="Button" parent="Options/TimerContainer"]
+[node name="Start" type="Button" parent="Main/Options/TimerContainer"]
 margin_right = 188.0
 margin_bottom = 38.0
 custom_fonts/font = ExtResource( 2 )
 text = "Start Bingo"
 
-[node name="Retire" type="Button" parent="Options/TimerContainer"]
+[node name="Retire" type="Button" parent="Main/Options/TimerContainer"]
 margin_left = 192.0
 margin_right = 300.0
 margin_bottom = 38.0
@@ -56,7 +63,7 @@ size_flags_horizontal = 8
 custom_fonts/font = ExtResource( 2 )
 text = "Retire"
 
-[node name="Timer" type="Label" parent="Options/TimerContainer"]
+[node name="Timer" type="Label" parent="Main/Options/TimerContainer"]
 margin_left = 304.0
 margin_top = 3.0
 margin_right = 432.0
@@ -65,17 +72,21 @@ size_flags_horizontal = 8
 custom_fonts/font = ExtResource( 2 )
 text = "00:00:00"
 
-[node name="Board" type="GridContainer" parent="."]
+[node name="Board" type="GridContainer" parent="Main"]
 margin_top = 42.0
-margin_right = 1180.0
-margin_bottom = 559.0
+margin_right = 1176.0
+margin_bottom = 1080.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 5
 
+[node name="Tracker" type="VBoxContainer" parent="."]
+margin_left = 1180.0
+margin_right = 1180.0
+margin_bottom = 1080.0
+
 [node name="PopupMenu" type="PopupPanel" parent="."]
-visible = true
 margin_top = 563.0
 margin_right = 400.0
 margin_bottom = 963.0
@@ -111,6 +122,8 @@ margin_right = 317.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
+caret_blink = true
+caret_blink_speed = 0.5
 
 [node name="SeededGenerate" type="Button" parent="PopupMenu/OptionList/SharedSeed"]
 margin_left = 321.0
@@ -125,8 +138,8 @@ margin_right = 392.0
 margin_bottom = 392.0
 size_flags_vertical = 3
 
-[connection signal="pressed" from="Options/Options" to="." method="_on_Options_pressed"]
-[connection signal="pressed" from="Options/Generate" to="." method="_on_Generate_pressed"]
-[connection signal="pressed" from="Options/TimerContainer/Start" to="Options/TimerContainer" method="_on_Start_pressed"]
-[connection signal="pressed" from="Options/TimerContainer/Retire" to="Options/TimerContainer" method="_on_Retire_pressed"]
+[connection signal="pressed" from="Main/Options/Options" to="." method="_on_Options_pressed"]
+[connection signal="pressed" from="Main/Options/Generate" to="." method="_on_Generate_pressed"]
+[connection signal="pressed" from="Main/Options/TimerContainer/Start" to="Main/Options/TimerContainer" method="_on_Start_pressed"]
+[connection signal="pressed" from="Main/Options/TimerContainer/Retire" to="Main/Options/TimerContainer" method="_on_Retire_pressed"]
 [connection signal="pressed" from="PopupMenu/OptionList/SharedSeed/SeededGenerate" to="." method="_on_SeededGenerate_pressed"]

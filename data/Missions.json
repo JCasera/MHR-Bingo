@@ -15,8 +15,8 @@
         "Hunt [common_elders]"
     ],
     "hunts": [
-        "Hunt 2 [species]s",
-        "Hunt 3 [species]s"
+        "Hunt <T>2 [species]s",
+        "Hunt <T>3 [species]s"
     ],
     "quest": [
         "Complete [quest]",
@@ -26,23 +26,23 @@
         "Complete [quest] with no faints",
         "Complete 3 sub-quests in 1 hunt",
         "Complete 5 sub-quests in 1 hunt",
-        "Complete 10 sub-quests"
+        "Complete <T>10 sub-quests"
     ],
     "gathering": [
         "Max out your petalace while on an expedition",
         "Collect 5000 Resource Points in 1 hunt",
         "Collect 10000 Resource Points in 1 hunt",
-        "Catch 5 Great Whetfish",
-        "Collect 10 [rare_account_item]",
-        "Deliver 2 [delivery]",
-        "Collect 3 [drops]"
+        "Catch <T>5 Great Whetfish",
+        "Collect <T>10 [rare_account_item]",
+        "Deliver <T>2 [delivery]",
+        "Collect <T>3 [drops]"
     ],
     "exploring": [
         "Take a picture of monsters in a Turf War",
-        "Take a picture of 2 different [species]s",
-        "Take a picture of 3 sleeping [species]s",
-        "Take a picture of 3 paralyzed [species]s",
-        "Take a picture of 3 blighted [species]s",
+        "Take a picture of <T>2 different [species]s",
+        "Take a picture of <T>3 sleeping [species]s",
+        "Take a picture of <T>3 paralyzed [species]s",
+        "Take a picture of <T>3 blighted [species]s",
         "Trap a monster with the quicksand in the Sandy Plains",
         "Break the tower in the Citidel",
         "Launch a monster into a water/lava vein",

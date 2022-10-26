@@ -1,16 +1,19 @@
-extends VBoxContainer
+extends HBoxContainer
 
-onready var board = $Board
-onready var options = $Options
-onready var rng_seed = $Options/Seed
+onready var board = $Main/Board
+onready var options = $Main/Options
+onready var rng_seed = $Main/Options/Seed
 onready var modes_list = $PopupMenu/OptionList/ModeList
 onready var tile = preload("res://Tile.tscn")
+
+onready var tracker = $Tracker
 
 var mission_list
 var fill_in_values
 var bingo_options
 const board_size = 25
 const values_exhausted = "Values Exhausted"
+
 
 var rng = RandomNumberGenerator.new()
 var used_values = []
@@ -147,6 +150,10 @@ func _on_Generate_pressed():
 		var l = tile.instance()
 		board.add_child(l)
 		l.update_text(mission_text)
+		
+	
+	# Populate tracker
+	
 
 func _on_Options_pressed():
 	print(bingo_options.keys())

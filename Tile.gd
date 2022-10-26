@@ -9,22 +9,26 @@ var count = -1
 var total = -1
 var original_text = ""
 
-const track_code = "<T>"
+var track_code = RegEx.new()
+
+func _ready():
+	track_code.compile("<T>(\\d+)")
 
 func update_text(t = ""):
 	original_text = t
-	if not track_code in t:
+	var result = track_code.search(original_text)
+	if result == null:
 		mission_text.text = t
 		return
 		
 	tracked = true
 	count = 0
-	total = int(original_text.right(t.find(track_code))[3])
-	mission_text.text = original_text.replace(track_code, str(count)+"/")
+	total = int(result.get_string(1))
+	mission_text.text = track_code.sub(original_text, str(count)+"/"+str(total))
 
 func update_text_display():
 	if tracked:
-		mission_text.text = original_text.replace(track_code, str(count)+"/")
+		mission_text.text = track_code.sub(original_text, str(count)+"/"+str(total))
 		
 	if complete:
 		mission_text.add_color_override("font_color", Color("828282"))

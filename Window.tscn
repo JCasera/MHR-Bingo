@@ -1,8 +1,16 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Window.gd" type="Script" id=1]
 [ext_resource path="res://assets/timer_text.tres" type="DynamicFont" id=2]
 [ext_resource path="res://TimerContainer.gd" type="Script" id=3]
+[ext_resource path="res://assets/FiraMono-Regular.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 17
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_bottom = 2
+font_data = ExtResource( 4 )
 
 [node name="Window" type="HBoxContainer"]
 anchor_right = 1.0
@@ -13,12 +21,12 @@ __meta__ = {
 }
 
 [node name="Main" type="VBoxContainer" parent="."]
-margin_right = 1176.0
+margin_right = 846.0
 margin_bottom = 1080.0
 size_flags_horizontal = 3
 
 [node name="Options" type="HBoxContainer" parent="Main"]
-margin_right = 1176.0
+margin_right = 846.0
 margin_bottom = 38.0
 
 [node name="Options" type="Button" parent="Main/Options"]
@@ -36,15 +44,16 @@ text = "Generate Grid"
 
 [node name="Seed" type="LineEdit" parent="Main/Options"]
 margin_left = 352.0
-margin_right = 740.0
+margin_right = 410.0
 margin_bottom = 38.0
 size_flags_horizontal = 3
+text = "Select Options for rules"
 caret_blink = true
 caret_blink_speed = 0.5
 
 [node name="TimerContainer" type="HBoxContainer" parent="Main/Options"]
-margin_left = 744.0
-margin_right = 1176.0
+margin_left = 414.0
+margin_right = 846.0
 margin_bottom = 38.0
 size_flags_horizontal = 10
 script = ExtResource( 3 )
@@ -74,7 +83,7 @@ text = "00:00:00"
 
 [node name="Board" type="GridContainer" parent="Main"]
 margin_top = 42.0
-margin_right = 1176.0
+margin_right = 846.0
 margin_bottom = 1080.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -82,22 +91,23 @@ size_flags_vertical = 3
 columns = 5
 
 [node name="Tracker" type="VBoxContainer" parent="."]
-margin_left = 1180.0
-margin_right = 1180.0
+margin_left = 850.0
+margin_right = 850.0
 margin_bottom = 1080.0
 
-[node name="PopupMenu" type="PopupPanel" parent="."]
-margin_top = 563.0
-margin_right = 400.0
-margin_bottom = 963.0
-rect_min_size = Vector2( 400, 400 )
+[node name="OptionsWindow" type="PopupPanel" parent="."]
+visible = true
+margin_left = 854.0
+margin_right = 1454.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 600, 400 )
 size_flags_horizontal = 2
 size_flags_vertical = 2
 
-[node name="OptionList" type="VBoxContainer" parent="PopupMenu"]
+[node name="OptionList" type="VBoxContainer" parent="OptionsWindow"]
 margin_left = 4.0
 margin_top = 4.0
-margin_right = 396.0
+margin_right = 596.0
 margin_bottom = 396.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -105,41 +115,57 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="PopupMenu/OptionList"]
-margin_right = 392.0
+[node name="Label" type="Label" parent="OptionsWindow/OptionList"]
+margin_right = 592.0
 margin_bottom = 32.0
 custom_fonts/font = ExtResource( 2 )
 text = "Enter a shared seed:"
 
-[node name="SharedSeed" type="HBoxContainer" parent="PopupMenu/OptionList"]
+[node name="SharedSeed" type="HBoxContainer" parent="OptionsWindow/OptionList"]
 margin_top = 36.0
-margin_right = 392.0
-margin_bottom = 60.0
+margin_right = 592.0
+margin_bottom = 78.0
 size_flags_horizontal = 3
 
-[node name="CustomSeed" type="LineEdit" parent="PopupMenu/OptionList/SharedSeed"]
-margin_right = 317.0
-margin_bottom = 24.0
+[node name="CustomSeed" type="LineEdit" parent="OptionsWindow/OptionList/SharedSeed"]
+margin_right = 448.0
+margin_bottom = 42.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
+custom_fonts/font = ExtResource( 2 )
 caret_blink = true
 caret_blink_speed = 0.5
 
-[node name="SeededGenerate" type="Button" parent="PopupMenu/OptionList/SharedSeed"]
-margin_left = 321.0
-margin_right = 392.0
-margin_bottom = 20.0
+[node name="SeededGenerate" type="Button" parent="OptionsWindow/OptionList/SharedSeed"]
+margin_left = 452.0
+margin_right = 592.0
+margin_bottom = 38.0
 size_flags_vertical = 2
+custom_fonts/font = ExtResource( 2 )
 text = "Generate"
 
-[node name="ModeList" type="VBoxContainer" parent="PopupMenu/OptionList"]
-margin_top = 64.0
-margin_right = 392.0
-margin_bottom = 392.0
+[node name="ModeList" type="VBoxContainer" parent="OptionsWindow/OptionList"]
+margin_top = 82.0
+margin_right = 592.0
+margin_bottom = 183.0
 size_flags_vertical = 3
+
+[node name="Rules" type="Label" parent="OptionsWindow/OptionList"]
+margin_top = 187.0
+margin_right = 592.0
+margin_bottom = 392.0
+custom_fonts/font = SubResource( 1 )
+text = "Expedition Bingo Rules:
+1) You can only select MR Expeditions
+2) You cannot select the same expedition twice in a row
+3) In order to complete an Expedition, you must hunt/capture at least 1 monster
+
+Expedition Bingo Goals:
+Complete any row, column or diagnol of 5 tiles to win"
+autowrap = true
 
 [connection signal="pressed" from="Main/Options/Options" to="." method="_on_Options_pressed"]
 [connection signal="pressed" from="Main/Options/Generate" to="." method="_on_Generate_pressed"]
 [connection signal="pressed" from="Main/Options/TimerContainer/Start" to="Main/Options/TimerContainer" method="_on_Start_pressed"]
 [connection signal="pressed" from="Main/Options/TimerContainer/Retire" to="Main/Options/TimerContainer" method="_on_Retire_pressed"]
-[connection signal="pressed" from="PopupMenu/OptionList/SharedSeed/SeededGenerate" to="." method="_on_SeededGenerate_pressed"]
+[connection signal="pressed" from="OptionsWindow/OptionList/SharedSeed/SeededGenerate" to="." method="_on_SeededGenerate_pressed"]

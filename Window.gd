@@ -3,7 +3,7 @@ extends HBoxContainer
 onready var board = $Main/Board
 onready var options = $Main/Options
 onready var rng_seed = $Main/Options/Seed
-onready var modes_list = $PopupMenu/OptionList/ModeList
+onready var modes_list = $OptionsWindow/OptionList/ModeList
 onready var tile = preload("res://Tile.tscn")
 
 onready var tracker = $Tracker
@@ -51,16 +51,21 @@ func load_options():
 		radbtn.name = i
 		radbtn.text = i.capitalize()
 		radbtn.group = board_modes
+		radbtn.connect("pressed", self, "update_rules")
 	board_modes.get_buttons()[0].pressed = true
+	update_rules()
 
 func roll_missions():
 	used_values.clear()
 	rng_seed.text = str(rng.state)
 	return load_board_by_type()
 
+func get_board_generation_rules():
+	return bingo_options["mode"][board_modes.get_pressed_button().name]["grid"]
+
 func load_board_by_type():
 	print("Creating board for " + board_modes.get_pressed_button().name)
-	var generation_rules = bingo_options["mode"][board_modes.get_pressed_button().name]
+	var generation_rules = get_board_generation_rules()
 	var board_missions = []
 
 	for tile_type in generation_rules:
@@ -149,18 +154,17 @@ func _on_Generate_pressed():
 
 		var l = tile.instance()
 		board.add_child(l)
-		l.update_text(mission_text)
-		
-	
-	# Populate tracker
-	
+		l.update_text(mission_text)	
 
 func _on_Options_pressed():
 	print(bingo_options.keys())
 	print(bingo_options["mode"].keys())
-	$PopupMenu.popup_centered()
-
+	$OptionsWindow.popup_centered()
 
 func _on_SeededGenerate_pressed():
-	rng.state = int($PopupMenu/OptionList/SharedSeed/CustomSeed.text)
+	rng.state = int($OptionsWindow/OptionList/SharedSeed/CustomSeed.text)
 	_on_Generate_pressed()
+
+func update_rules():
+	var rules = $OptionsWindow/OptionList/Rules
+	rules.text = bingo_options["mode"][board_modes.get_pressed_button().name]["rules"]

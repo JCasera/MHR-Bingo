@@ -1,6 +1,7 @@
 extends CenterContainer
 
 onready var mission_text = $Label
+onready var bg = $Background
 
 var complete = false
 var tracked = false
@@ -24,10 +25,13 @@ func update_text(t = ""):
 func update_text_display():
 	if tracked:
 		mission_text.text = original_text.replace(track_code, str(count)+"/")
+		
 	if complete:
-		mission_text.add_color_override("font_color", Color(0,0,0))
+		mission_text.add_color_override("font_color", Color("828282"))
+		bg.self_modulate = Color("828282")
 	else:
 		mission_text.add_color_override("font_color", Color("ffffff"))
+		bg.self_modulate = Color.white
 
 func _on_Tile_gui_input(event):
 	# Grey out on click

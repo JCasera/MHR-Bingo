@@ -50,7 +50,8 @@
         "Seething Bazelgeuse",
         "Seregios",
         "Silver Rathalos",
-        "Zinogre"
+        "Zinogre",
+        "Chaotic Gore Magala"
     ],
     "[afflicted]": [
         "Aknosom",
@@ -96,9 +97,13 @@
         "Aurora Somnacanth",
         "Diablos",
         "Espinas",
+        "Flaming Espinas",
         "Furious Rajang",
+        "Gold Rathian",
         "Rajang",
+        "Seething Bazelgeuse",
         "Seregios",
+        "Silver Rathalos",
         "Zinogre"
     ],
     "[special_arena_monsters]": [
@@ -115,7 +120,9 @@
         "Kushala Daora",
         "Risen Chameleos",
         "Shagaru Magala",
-        "Teostra"
+        "Teostra",
+        "Risen Kushala Daora",
+        "Risen Teostra"
     ],
     "[rare_endemic_life]": [
         "Gargolda",
